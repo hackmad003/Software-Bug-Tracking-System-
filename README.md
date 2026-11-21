@@ -191,7 +191,7 @@ The composite PK allows at most one assignment per developer–bug pair (R10).
 
 ## Day-to-day use
 
-powershell
-uv run python backend/app.py     # runs the app inside the project's .venv
-uv add <package>                 # adds a new dependency
-uv sync                          # teammates run this after cloning
+- powershell
+- uv run python backend/app.py     # runs the app inside the project's .venv
+- uv add <package>                 # adds a new dependency
+- uv sync                          # teammates run this after cloning
