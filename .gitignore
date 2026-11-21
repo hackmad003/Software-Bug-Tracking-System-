@@ -1,0 +1,31 @@
+# Secrets: real DB credentials live here (commit .env.example instead)
+.env
+.env.*
+!.env.example
+
+# Python virtual environment (recreated by `uv sync`)
+.venv/
+venv/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Flask
+instance/
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local Claude Code settings
+.claude/settings.local.json
