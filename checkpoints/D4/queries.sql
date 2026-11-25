@@ -197,3 +197,21 @@ LEFT JOIN bug b ON b.project_id = p.project_id
 GROUP BY p.project_id, p.name
 HAVING COUNT(b.bug_id) = 0
 ORDER BY p.name;
+
+-- ---------------------------------------------------------------------
+-- Q14: Find bugs that have more than 2 comments.
+-- ---------------------------------------------------------------------
+SELECT b.bug_id, b.title, COUNT(c.comment_id) AS comment_count
+FROM bug b
+JOIN comment c ON c.bug_id = b.bug_id
+GROUP BY b.bug_id, b.title
+HAVING COUNT(c.comment_id) > 2
+ORDER BY comment_count DESC, b.bug_id;
+
+-- ---------------------------------------------------------------------
+-- Q15: Find the most frequently used bug tags.
+-- ---------------------------------------------------------------------
+SELECT tag, COUNT(bug_id) AS bug_count
+FROM bug_tag
+GROUP BY tag
+ORDER BY bug_count DESC, tag;
