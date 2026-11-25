@@ -61,6 +61,9 @@ Software-Bug-Tracking-System-/
 │   │   ├── schema.sql
 │   │   └── data.sql
 │   └── D4/
+│       ├── d4_queries-t2.md
+│       ├── d4_queries.pdf
+│       └── queries.sql
 ├── docs/
 │   ├── CODING_STYLE.md
 │   ├── COMMENT_STYLE.md
