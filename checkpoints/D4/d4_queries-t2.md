@@ -3,14 +3,14 @@
 **Software Bug Tracking System** | CS 480 Database Systems | Due Nov 28, 2026  
 **Team:** Michael Nguyen, Ahmad Awaidah, Angelo Mustafa, Dev Patel
 
-13 queries on the D3 schema and data from `queries.sql`. Each query is shown as Task with the D1 requirement it answers, SQL and the first rows of its result. Requirement numbers R1 to R25 refer to D1. The values in the queries such as "more than 5 bugs" are fixed for this report; the web app passes them as parameters.
+15 queries on the D3 schema and data from `queries.sql`. Each query is shown as Task with the D1 requirement it answers, SQL and the first rows of its result. Requirement numbers R1 to R25 refer to D1. The values in the queries such as "more than 5 bugs" are fixed for this report; the web app passes them as parameters.
 
 ## Coverage of the required query types
 
 | Query type | Min | Queries |
 |---|---|---|
 | join of 3 or more tables | 2 | Q1, Q3, Q12 |
-| GROUP BY with HAVING | 2 | Q2, Q3, Q13 |
+| GROUP BY with HAVING | 2 | Q2, Q3, Q13, Q14 |
 | subquery or CTE | 2 | Q4, Q7 |
 | window function with PARTITION BY | 2 | Q4, Q6 |
 | outer join keeping unmatched rows | 1 | Q5, Q13 |
@@ -444,3 +444,55 @@ ORDER BY p.name;
 |---:|---|---:|
 | 19 | Summit CRM | 0 |
 | 20 | Tundra Sync | 0 |
+
+### Q14 (R6, R11)
+
+**Task:** Find the bugs that have more than 2 comments.
+
+**SQL**
+
+```sql
+SELECT b.bug_id, b.title, COUNT(c.comment_id) AS comment_count
+FROM bug b
+JOIN comment c ON c.bug_id = b.bug_id
+GROUP BY b.bug_id, b.title
+HAVING COUNT(c.comment_id) > 2
+ORDER BY comment_count DESC, b.bug_id;
+```
+
+**Result**
+
+| bug_id | title | comment_count |
+|---:|---|---:|
+| 6 | File upload displays the wrong time zone | 4 |
+| 9 | Sharing links returns HTTP 500 for valid requests | 4 |
+| 15 | Refund flow ignores the saved user preferences | 4 |
+| 17 | Filter sidebar is not reachable by keyboard | 4 |
+| 22 | Profile settings fails intermittently in CI | 4 |
+
+... (22 rows total, first 5 shown)
+
+### Q15 (R4)
+
+**Task:** Find the most frequently used bug tags.
+
+**SQL**
+
+```sql
+SELECT tag, COUNT(bug_id) AS bug_count
+FROM bug_tag
+GROUP BY tag
+ORDER BY bug_count DESC, tag;
+```
+
+**Result**
+
+| tag | bug_count |
+|---|---:|
+| Performance | 26 |
+| Backend | 19 |
+| Security | 19 |
+| UI | 19 |
+| Usability | 12 |
+
+... (12 rows total, first 5 shown)
