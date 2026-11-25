@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+{% block title %}All Bugs{% endblock %}
+
+{% block content %}
+<h2>All Bugs</h2>
+
+{% if bugs %}
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Project ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Severity</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bug in bugs %}
+            <tr>
+                <td>{{ bug.bug_id }}</td>
+                <td>{{ bug.project_id }}</td>
+                <td>{{ bug.title }}</td>
+                <td>{{ bug.severity }}</td>
+                <td>{{ bug.status }}</td>
+                <td>{{ bug.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p>No bugs found.</p>
+{% endif %}
+
+{% endblock %}
